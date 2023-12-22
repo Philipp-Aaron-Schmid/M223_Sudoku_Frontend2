@@ -118,7 +118,7 @@ function ScoreDisplayPage() {
                         <tr>
                             <th>Recent</th>
                             <th>Score</th>
-                            <th>Challenge Title</th>
+                            <th>Challenge</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -140,8 +140,8 @@ function ScoreDisplayPage() {
                         <tr>
                             <th>Rank</th>
                             <th>Score</th>
-                            <th>Player Alias</th>
-                            <th>Challenge Title</th>
+                            <th>Player</th>
+                            <th>Challenge</th>
                         </tr>
                     </thead>
                     <tbody>

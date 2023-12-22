@@ -59,7 +59,7 @@ const UserManagementPage = () => {
             <ul className="user-list">
                 {users.map(user => (
                     <li key={user.id} className="user-item">
-                        {user.username} - {user.email}
+                        <b>{user.username}</b> - {user.email}
                         <div>
                             <button onClick={() => handleDelete(user.id)}>Delete</button>
                             <button onClick={() => handleResetPassword(user.id)}>Reset Password</button>

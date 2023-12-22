@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Public.css'
+
 function PublicPage() {
     const [data, setData] = useState([]); // Hier werden die Daten gespeichert 
 const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ const [error, setError] = useState(null);
     }, []); // Die leere Array-Dependency sorgt dafür, dass dies nur beim ersten Render passi
     return (
         <div className='wide-content'>
-            <h1>Welcome to Sudoku</h1>
+            <h1>Competitive Sudoku</h1>
             <ul>
                 {data.map((item, index) => (
                     <li key={index}>{item}</li> // Zeigt jeden String in einem Listenpunkt an

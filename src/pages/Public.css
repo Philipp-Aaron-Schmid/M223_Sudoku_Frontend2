@@ -1,0 +1,37 @@
+/* App.css */
+
+.wide-content {
+    max-width: 60%; /* Change max-width to 60% of the viewport width */
+    margin: auto;
+    padding: 20px;
+}
+
+.wide-content h1 {
+    text-align: center;
+    color: var(--color-highlight);
+}
+
+.wide-content ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%; /* Ensure the ul element takes the full width of its container */
+}
+
+.wide-content li {
+    font-weight: 600;
+    font-size: large;
+    background-color: var(--color-interactive);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--color-text);
+    width: 100%; /* Make list items take the full width of the ul element */
+    height: 20vh;
+}
+
+.wide-content .error {
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+}

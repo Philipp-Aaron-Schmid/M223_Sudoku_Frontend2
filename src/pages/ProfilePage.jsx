@@ -31,7 +31,7 @@ const ProfilePage = () => {
             }
         })
             .then(response => {
-                setUser({ ...user, ...response.data, password: '' }); // Set password to empty
+                setUser({ ...user, ...response.data, password: '' });
                 setIsLoading(false);
             })
             .catch(error => {
@@ -69,7 +69,8 @@ const ProfilePage = () => {
         })
             .then(response => {
                 alert('Profile deleted successfully!');
-                navigate('/public'); // Redirect to public page
+                localStorage.removeItem("user");
+                navigate('/'); // Redirect to public page
             })
             .catch(error => {
                 setErrorMessage('Failed to delete profile: ' + error.message);

@@ -9,9 +9,9 @@ const SudokuBoardDisplay = ({ challengeSet }) => {
     }, [challengeSet]);
 
     return (
-        <div className="sudoku-board-display">
+        <div className="sudoku-board-preview">
             {boardData.map((cell, index) => (
-                <div key={index} className="sudoku-cell-Display">
+                <div key={index} className="sudoku-cell-preview">
                     {cell !== '0' ? cell : ''}
                 </div>
             ))}

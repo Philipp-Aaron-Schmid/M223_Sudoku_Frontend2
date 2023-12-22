@@ -4,22 +4,34 @@ const SudokuBoardAdd = ({ onUpdate }) => {
     const [boardData, setBoardData] = useState(Array(81).fill('0'));
 
     const handleInputChange = (value, index) => {
-        const newBoardData = [...boardData];
-        newBoardData[index] = value || '0'; // Replace empty input with '0'
-        setBoardData(newBoardData);
-        onUpdate(newBoardData.join(''));
+        if (value === '' || (value >= '1' && value <= '9')) {
+            const newBoardData = [...boardData];
+            newBoardData[index] = value;
+            setBoardData(newBoardData);
+            onUpdate(newBoardData.join(''));
+        }
+    };
+    
+    const handleKeyDown = (e, index) => {
+        if (e.key === 'Backspace') {
+            const newBoardData = [...boardData];
+            newBoardData[index] = '0';
+            setBoardData(newBoardData);
+            onUpdate(newBoardData.join(''));
+        }
     };
 
     return (
-        <div className="sudoku-board">
+        <div className="sudoku-board-add">
             {boardData.map((cell, index) => (
                 <input
                     key={index}
-                    type="text"
+                    type="tel" // Type set to 'tel' for numeric keypad on mobile devices
                     maxLength="1"
                     value={cell !== '0' ? cell : ''}
                     onChange={(e) => handleInputChange(e.target.value, index)}
-                    className="sudoku-cell"
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    className="sudoku-cell-add"
                 />
             ))}
         </div>

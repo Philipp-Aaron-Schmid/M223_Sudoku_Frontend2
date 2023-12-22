@@ -31,12 +31,13 @@ function App() {
                   <ChallengePage />
                 </ProtectedRoute>
               } />
-              <Route path="/playChallenge/:challengeId" element={<PlayChallengePage />} />
-              <Route path="/Score" element={<ScorePage />} />
-              <Route path="/ManageChallenge" element={<ChallengeManagementPage />} />
-              <Route path="/TopScores" element={<ScoreDisplayPage />} />
-              <Route path="/Profile" element={<ProfilePage />} />
-              <Route path="/ManageUser" element={<UserManagementPage />} />
+              <Route path="/playChallenge/:challengeId" element={
+                <ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><PlayChallengePage /></ProtectedRoute>} />
+              <Route path="/Score" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ScorePage /></ProtectedRoute>} />
+              <Route path="/ManageChallenge" element={<ProtectedRoute roles={['ROLE_ADMIN']}><ChallengeManagementPage /></ProtectedRoute>} />
+              <Route path="/TopScores" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ScoreDisplayPage /></ProtectedRoute>} />
+              <Route path="/Profile" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ProfilePage /></ProtectedRoute>} />
+              <Route path="/ManageUser" element={<ProtectedRoute roles={['ROLE_ADMIN']}><UserManagementPage /></ProtectedRoute>} />
             </Routes>
           </div></div>
       </AuthProvider>

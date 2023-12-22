@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import SudokuBoard from './SudokuBoard';
 
+/** Todo:
+ * Eliminate Known Bug on Reloading the page tha data is 
+ * lost and a faulty API request is sent to the backend 
+ * */
 function PlayChallengePage() {
     const { challengeId } = useParams();
     const navigate = useNavigate();
@@ -36,7 +40,18 @@ function PlayChallengePage() {
                 console.error(error);
                 setError(error);
             });
-    }, [challengeId]); // Dependency array should include challengeId
+        const savedState = localStorage.getItem('sudokuChallengeState');
+        if (savedState) {
+            const { remainingTime, sudokuState } = JSON.parse(savedState);
+            setSudokuData(sudokuState);
+            setTimer(remainingTime);
+
+            if (remainingTime <= 0) {
+                handleSubmit(0); // Automatically submit if time ran out
+            }
+        }
+    }, [challengeId]);
+
 
     useEffect(() => {
         if (timer > 0 && !timerRef.current) {
@@ -56,6 +71,16 @@ function PlayChallengePage() {
             }
         };
     }, [timer, isPageLoaded]);
+
+    useEffect(() => {
+        // Save the current state and time to local storage
+        const challengeState = {
+            remainingTime: timer,
+            sudokuState: sudokuData
+        };
+        localStorage.setItem('sudokuChallengeState', JSON.stringify(challengeState));
+        // Timer effect as before
+    }, [timer, sudokuData]);
 
     const handleSubmit = (currentTimer) => {
         const playTime = challengeData.challengeTime - currentTimer;
@@ -81,6 +106,7 @@ function PlayChallengePage() {
                 console.error(error);
                 setError(error);
             });
+        localStorage.removeItem('sudokuChallengeState');
     };
     return (
         <div className="play-challenge-container">

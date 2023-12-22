@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function SignupForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await axios.post('http://localhost:8080/api/auth/signup', { username, password, email })
-                .then(response => {
-                    setData(response.data); // Speichert die Daten aus der Antwort
+                .then(message => {
+                    alert("Sign up was a success");
+                    navigate('/signin');
                 })
-                .catch(error => {
-                    setError("Fehler: " + error)
+                .catch(message => {
+                    alert("Sign up failed")
+                    setError("Fehler: " + message)
                 });
         }
         catch (error) {
