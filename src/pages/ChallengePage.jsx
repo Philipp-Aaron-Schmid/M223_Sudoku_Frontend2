@@ -19,33 +19,38 @@ function ChallengePage() {
                 "mode": "cors",
             },
         })
-        .then((response) => {
-            setData(response.data);
-        })
-        .catch((error) => {
-            console.error(error);
-            setError(error);
-        });
+            .then((response) => {
+                setData(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+                setError(error);
+            });
     }, []);
 
     return (
-        <div>
-            <h1>Private Seite</h1>
-            {data.map(challenge => (
-                <div key={challenge.challangeId} className="challenge-box">
-                    <h2>{challenge.challangeTitle}</h2>
-                    <p>Time: {challenge.challangeTime} seconds</p>
-                    <Link to={`/playChallenge/${challenge.challangeId}`}>
-                        <button>Play Challenge</button>
-                    </Link>
-                </div>
-            ))}
-            {error && (
-                <div className="error">
-                    {error.message}
-                </div>
-            )}
-        </div>
+        <div className='wide-content'>
+            <h1>Avaliable Challenges</h1>
+            <div className='column-content'>
+                {data.map(challenge => (
+                    <div key={challenge.challangeId} className="challenge-box">
+                        <div className='constant-box'>
+                            <h2>{challenge.challangeTitle}</h2>
+                            <p>Time: {challenge.challangeTime} seconds</p>
+                        </div>
+                        <div className='center-button'>
+                            <Link to={`/playChallenge/${challenge.challangeId}`}>
+                                <button>Play</button>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+                {error && (
+                    <div className="error">
+                        {error.message}
+                    </div>
+                )}
+            </div></div>
     );
 }
 

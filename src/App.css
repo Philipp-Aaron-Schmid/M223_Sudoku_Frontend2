@@ -1,136 +1,484 @@
-#root {
-  max-width: 1800px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+
+/* General Styles */
+
+:root {
+  --color-general: white;
+  --color-interactive: lightgrey;
+  --color-highlight: #0056b3;
+  --color-highlight-dark: #004896;
+  ;
+  --color-text: black;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  font-family: 'Arial', sans-serif;
+  color: var(--color-text);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  background-color: var(--color-general);
+  box-shadow: 0 2px 4px var(--color-interactive);
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.sidebar a,
+.sidebar button {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--color-text);
+  background-color: var(--color-interactive);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
-.card {
-  padding: 2em;
+.sidebar a:hover,
+.sidebar button:hover {
+  background-color: var(--color-highlight);
 }
 
-.read-the-docs {
-  color: #888;
+.sidebar .logout-button {
+  margin-top: auto;
+  width: 100%;
 }
+
+.sidebar .active-nav-link {
+  background-color: var(--color-highlight);
+}
+
+.sidebar button:hover {
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  opacity: 1;
+}
+
+.sidebar a.active-nav-link {
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+}
+
+/* App Styling */
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  width: 80%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.wide-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.main-content h1 {
+  align-self: auto;
+  font-size: 4em;
+  color: var(--color-highlight);
+  /* Using the centralized color variable */
+  margin-bottom: 20px;
+}
+
+.main-content ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content li {
+  background-color: var(--color-interactive);
+  width: 60%;
+  min-height: 20vh;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px var(--color-interactive);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+/* Styling for Challenges*/
+
+.column-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  padding: 20px;
+}
+
+.challenge-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Two columns */
+  background-color: var(--color-interactive);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 15px;
+  width: 80%;
+  /* Adjust as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-box h2,
+.challenge-box p {
+  margin: 0;
+}
+
+.center-button {
+  display: flex;
+  align-items: center;
+}
+
+.constant-box {
+  width: 180px;
+}
+
+.challenge-box button {
+  font-size: larger;
+  align-self: auto;
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  border: none;
+  padding: 10px 20px;
+  margin-left: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.error {
+  color: red;
+  margin-top: 20px;
+}
+
+
+/* Style for PlayChallengePage and SudokuBoard */
+.play-challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.timer-box {
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.challenge-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+}
+
+.info-box {
+  background-color: var(--color-interactive);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
 .sudoku-board {
   display: grid;
-  grid-template-columns: repeat(9, auto);
-  gap: 5px;
-}
-
-.sudoku-row {
-  display: contents;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2px;
+  width: 60vh;
+  /* Fixed square size */
+  height: 60vh;
+  /* Fixed square size */
+  margin: 20px 0;
 }
 
 .sudoku-cell {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ddd;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: var(--color-general);
+  border: 3px solid var(--color-interactive);
+}
+
+.sudoku-cell.preset {
+  background-color: var(--color-interactive);
+}
+
+/* Styles to create 3x3 groups */
+.sudoku-cell:nth-child(3n),
+.sudoku-cell:nth-child(-n+27):nth-child(3n),
+.sudoku-cell:nth-child(n+55):nth-child(3n) {
+  border-right: 4px solid var(--color-highlight);
+}
+
+.sudoku-cell:nth-child(27n+1),
+.sudoku-cell:nth-child(27n+2),
+.sudoku-cell:nth-child(27n+3),
+.sudoku-cell:nth-child(27n+4),
+.sudoku-cell:nth-child(27n+5),
+.sudoku-cell:nth-child(27n+6),
+.sudoku-cell:nth-child(27n+7),
+.sudoku-cell:nth-child(27n+8),
+.sudoku-cell:nth-child(27n+9) {
+  border-top: 4px solid var(--color-highlight);
 }
 
 .sudoku-cell input {
   width: 100%;
   height: 100%;
-  text-align: center;
   border: none;
-}
-/* Container for the challenge management page */
-.challenge-management-container {
-  display: flex;
-}
-
-/* Left half for displaying challenges */
-.challenges-list {
-  width: 50%;
-  max-height: 100vh;
-  overflow: auto;
+  text-align: center;
+  font-size: large;
+  background-color: var(--color-general);
+  color: black;
 }
 
-/* Individual challenge container */
-.challenge-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.sudoku-cell input:focus {
+  outline: none;
+  background-color: var(--color-highlight);
+  color: var(--color-general);
 }
 
-/* Smaller Sudoku board for display */
-.sudoku-board-display {
-  display: grid;
-  grid-template-columns: repeat(9, 20px); /* Smaller cells */
-  gap: 2px;
-  margin-left: 10px;
+button {
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.sudoku-cell-Display {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem; /* Smaller font size */
-}
+/* Score and Scores */
 
-/* Right half for adding new challenges */
-.new-challenge-form {
-  width: 50%;
-  padding-left: 20px;
+.message-box {
+  background-color: var(--color-interactive);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 .scores-container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 20px;
   padding: 20px;
+  align-items: start;
 }
 
-.user-scores, .top-scores {
-  width: 45%;
+.h1-container {
+  grid-column: 1 / -1;
+  /* Span the title across all columns */
+  text-align: center;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+  margin-bottom: 20px;
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: var(--color-interactive);
+  padding: 10px;
 }
 
+td,
+th {
+  border: 1px solid var(--color-interactive);
+  text-align: center;
+  padding: 8px;
+}
 
+tr:hover {
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+}
+
+.sudoku-board-scores {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.sudoku-cell-scores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-general);
+  border: 1px solid var(--color-highlight);
+  aspect-ratio: 1 / 1;
+}
+
+.sudoku-placeholder-content {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Profile/Signup/Signin*/
+
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-form {
+  background-color: var(--color-interactive);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  /* Adjust as needed */
+  margin: 20px;
+}
+
+.profile-form div {
+  margin-bottom: 10px;
+}
+
+.profile-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-form input {
+  width: 90%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.profile-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: var(--color-highlight-dark);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-box {
+  background-color: var(--color-interactive);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  /* Adjust as needed */
+  margin: 20px;
+}
+
+.form-box label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-box input {
+  width: 90%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  cursor: pointer;
+}
+
+.form-box button:hover {
+  background-color: var(--color-highlight-dark);
+}
+
+/* user management */
+
+.user-management-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.user-list {
+  flex-wrap: wrap;
+  display: flex;
+  height: 100vh;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-item {
+  flex: 1 0 25%;
+  background-color: var(--color-interactive);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-item button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-highlight);
+  color: var(--color-general);
+  cursor: pointer;
+}
+
+.user-item button:hover {
+  background-color: var(--color-highlight-dark);
+}

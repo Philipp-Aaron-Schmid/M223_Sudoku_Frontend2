@@ -48,7 +48,7 @@ function PlayChallengePage() {
             timerRef.current = null;
             handleSubmit(0); // Call handleSubmit only if the page is fully loaded
         }
-    
+
         return () => {
             if (timerRef.current) {
                 clearInterval(timerRef.current);
@@ -82,24 +82,25 @@ function PlayChallengePage() {
                 setError(error);
             });
     };
-
     return (
-        <div>
+        <div className="play-challenge-container">
             <h1>Play Challenge</h1>
-            <p>Time Remaining: {timer} seconds</p>
-            <p>Challenge ID: {challengeData.challengeId}
-                Challenge Set: {challengeData.challengeSet}
-                Challenge Time: {challengeData.challengeTime}</p>
+            <div className="timer-box">Time Remaining: {timer} seconds</div>
             <SudokuBoard
                 challengeSet={challengeData.challengeSet || ''}
                 onUpdate={setSudokuData}
             />
             <button onClick={handleSubmit}>Submit</button>
-            {error && (<div className="error"> {error.message} </div>)}
-
+            <div className="challenge-info">
+                <div className="info-box">Challenge ID: {challengeData.challengeId}</div>
+                <div className="info-box">Challenge Set: {challengeData.challengeSet}</div>
+                <div className="info-box">Challenge Time: {challengeData.challengeTime}</div>
+            </div>
+            {error && <div className="error"> {error.message} </div>}
         </div>
     );
 }
+
 
 export default PlayChallengePage;
 

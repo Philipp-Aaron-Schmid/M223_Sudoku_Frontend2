@@ -89,39 +89,44 @@ const ProfilePage = () => {
     }
 
     return (
-        <div>
+        <div className="profile-container">
             <h1>User Profile</h1>
-            <div>
-                <label>Username:</label>
-                <input 
-                    name="username"
-                    value={user.username}
-                    onChange={handleChange} />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input 
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange} />
-            </div>
-            <div>
-                <label>Alias:</label>
-                <input 
-                    name="alias"
-                    value={user.alias}
-                    onChange={handleChange} />
-            </div>
-            <div>
-                <label>Password (leave blank to keep current):</label>
-                <input 
-                    type="password"
-                    name="password"
-                    value={user.password}
-                    onChange={handleChange} />
-            </div>
-            <button onClick={handleUpdate}>Update Profile</button>
-            <button onClick={handleDelete}>Delete Profile</button>
+            <form className="profile-form">
+                <div>
+                    <label>Username:</label>
+                    <input 
+                        name="username"
+                        value={user.username}
+                        onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input 
+                        name="email"
+                        value={user.email}
+                        onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Alias:</label>
+                    <input 
+                        name="alias"
+                        value={user.alias}
+                        onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Password (leave blank to keep current):</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        value={user.password}
+                        onChange={handleChange} />
+                </div>
+                <button type="button" onClick={handleUpdate}>Update Profile</button>
+                <button type="button" onClick={handleDelete}>Delete Profile</button>
+            </form>
+            {errorMessage && (
+                <div className="error-message">Error: {errorMessage}</div>
+            )}
         </div>
     );
 };

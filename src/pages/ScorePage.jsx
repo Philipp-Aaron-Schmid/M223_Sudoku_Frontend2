@@ -11,7 +11,9 @@ function ScorePage() {
     return (
         <div>
             <h1>Score</h1>
-            <p>{message}</p>
+            <div className="message-box">
+                <p>{message}</p>
+            </div>
         </div>
     );
 }

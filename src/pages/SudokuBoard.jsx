@@ -26,7 +26,7 @@ const SudokuBoard = ({ challengeSet, onUpdate }) => {
     return (
         <div className="sudoku-board">
             {boardData.map((cell, index) => (
-                <div key={index} className="sudoku-cell">
+                <div key={index} className={`sudoku-cell ${challengeSet[index] !== '0' ? 'preset' : ''}`}>
                     {challengeSet[index] !== '0' ? (
                         cell
                     ) : (

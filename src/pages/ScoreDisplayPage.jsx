@@ -73,29 +73,44 @@ function ScoreDisplayPage() {
         return placeholders;
     };
 
-    const SudokuBoard = ({ playSet, playsScoreSet }) => {
+    const SudokuBoardScores = ({ playSet, playsScoreSet }) => {
         const renderCell = (index) => {
             const value = playSet[index];
-            const color = playsScoreSet[index] === '1' ? 'white' : playsScoreSet[index] === '2' ? 'green' : 'red';
-    
+            const color = playsScoreSet[index] === '1' ? 'black' : playsScoreSet[index] === '2' ? '#0056b3' : 'lightgrey';
+
             return (
-                <div key={index} style={{ color }} className="sudoku-cell">
+                <div key={index} style={{ color }} className="sudoku-cell-scores">
                     {value !== '0' ? value : ''}
                 </div>
             );
         };
-    
+
         return (
-            <div className="sudoku-board">
+            <div className="sudoku-board-scores">
                 {Array.from({ length: 81 }).map((_, index) => renderCell(index))}
             </div>
         );
     };
-    
-    
+
+
 
     return (
+
         <div className="scores-container">
+            <div className="h1-container">
+                <h1>Scores</h1>
+            </div>
+            <div className="sudoku-placeholder">
+                {selectedScore ? (
+                    <SudokuBoardScores
+                        playSet={selectedScore.playSet}
+                        playsScoreSet={selectedScore.playsScoreSet}
+                    />
+                ) : (
+                    <div className="sudoku-placeholder-content">
+                    </div>
+                )}
+            </div>
             <div className="user-scores">
                 <h2>Own Scores</h2>
                 <table>
@@ -116,12 +131,7 @@ function ScoreDisplayPage() {
                         ))}
                     </tbody>
                 </table>
-                {selectedScore && (
-                    <SudokuBoard
-                        playSet={selectedScore.playSet}
-                        playsScoreSet={selectedScore.playsScoreSet}
-                    />
-                )}
+
             </div>
             <div className="top-scores">
                 <h2>Top 10 Scores</h2>

@@ -52,15 +52,18 @@ const UserManagementPage = () => {
     };
 
     return (
-        <div>
-            <h1>User Management</h1>
+        <div className="user-management-container">
+            <div className="h1-container">
+            <h1>User Management</h1></div>
             {errorMessage && <p className="error">{errorMessage}</p>}
-            <ul>
+            <ul className="user-list">
                 {users.map(user => (
-                    <li key={user.id}>
+                    <li key={user.id} className="user-item">
                         {user.username} - {user.email}
-                        <button onClick={() => handleDelete(user.id)}>Delete</button>
-                        <button onClick={() => handleResetPassword(user.id)}>Reset Password</button>
+                        <div>
+                            <button onClick={() => handleDelete(user.id)}>Delete</button>
+                            <button onClick={() => handleResetPassword(user.id)}>Reset Password</button>
+                        </div>
                     </li>
                 ))}
             </ul>

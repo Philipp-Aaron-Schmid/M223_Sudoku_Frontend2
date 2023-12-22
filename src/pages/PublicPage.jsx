@@ -13,7 +13,7 @@ const [error, setError] = useState(null);
             });
     }, []); // Die leere Array-Dependency sorgt dafür, dass dies nur beim ersten Render passi
     return (
-        <div>
+        <div className='wide-content'>
             <h1>Welcome to Sudoku</h1>
             <ul>
                 {data.map((item, index) => (
