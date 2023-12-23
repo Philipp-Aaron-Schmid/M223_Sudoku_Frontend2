@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Public.css'
-
+/**
+ * 
+ * @returns 
+ * This is the landing page of the application loads by default, interestingly it loads data from the backend that requires no special permission 
+ * as such it immediately test if the connection to the backend is there at all which can be usefull to find root causes of authorization issues
+ */
 function PublicPage() {
-    const [data, setData] = useState([]); // Hier werden die Daten gespeichert 
+    const [data, setData] = useState([]); 
 const [error, setError] = useState(null);
     useEffect(() => {
         axios.get('http://localhost:8080/index/index')
             .then(response => {
-                setData(response.data); // Speichert die Daten aus der Antwort
+                setData(response.data);
             })
             .catch(error => {
                 setError("Fehler beim Abruf der Daten: " + error)
             });
-    }, []); // Die leere Array-Dependency sorgt dafür, dass dies nur beim ersten Render passi
+    }, []); 
     return (
         <div className='wide-content'>
             <h1>Competitive Sudoku</h1>
             <ul>
                 {data.map((item, index) => (
-                    <li key={index}>{item}</li> // Zeigt jeden String in einem Listenpunkt an
+                    <li key={index}>{item}</li> 
                 ))}
             </ul>
             {error &&

@@ -3,7 +3,13 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import SudokuBoard from './SudokuBoard';
 
-/** Todo:
+/** 
+ * This page handles the timer and submission logic as well as calling the SudokuBoard component to play on. 
+ * The axios get request loads a challange string from the challangess backend entity
+ * 
+ * It also handles the submit logic which sends the newly created sudoku string to the backend and calls the score page
+ * 
+ * Todo:
  * Eliminate Known Bug on Reloading the page tha data is 
  * lost and a faulty API request is sent to the backend 
  * */

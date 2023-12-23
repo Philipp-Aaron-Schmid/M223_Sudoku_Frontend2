@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from 'react';
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ * 
+ * This is a more complex component board having the logic to ensure that the entered digits are of the valid variety 1-9 
+ * and preventing the Deletion of characters in the string to be submitted
+ */
 const SudokuBoardAdd = ({ onUpdate }) => {
     const gridSize = 9;
     const [boardData, setBoardData] = useState(Array(81).fill('0'));

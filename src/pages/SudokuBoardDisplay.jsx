@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ * The Sudoku board display is a simple component for the admin to have a visual representation of what the boards look like
+ * 
+ */
 const SudokuBoardDisplay = ({ challengeSet }) => {
     const gridSize = 9;
     const [boardData, setBoardData] = useState(Array(81).fill('0'));

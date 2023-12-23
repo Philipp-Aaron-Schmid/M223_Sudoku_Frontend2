@@ -1,7 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-
+/**
+ * 
+ * Simples page mearly shows the score of the Sudoku play after it has been calculated
+ * 
+ */
 
 
 function ScorePage() {

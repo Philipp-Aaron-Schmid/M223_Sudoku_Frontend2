@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
  * 
  * @param {*} param0 
  * @returns 
+ * This is the actial playing board with some additional navigation and hilighting features it only takes in digits as inputs
  * 
- * toDo Add arrowkey board navigation/wasd
  */
 const SudokuBoard = ({ challengeSet, onUpdate }) => {
     const gridSize = 9;

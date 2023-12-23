@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
-
+/**
+ * This page handles the users details and as such is only acessible to the surrently logged in user
+ * The user ID sent in the get put and delete requests are compared to the authorized user in the backend 
+ * before proceeding with alterations of the user
+ */
 const ProfilePage = () => {
     const [user, setUser] = useState({
         username: '',
@@ -69,7 +73,7 @@ const ProfilePage = () => {
         })
             .then(response => {
                 alert('Profile deleted successfully!');
-                localStorage.removeItem("user");
+                localStorage.removeItem("user");// importans as to not leave acess to the rasources despite deletion.
                 navigate('/'); // Redirect to public page
             })
             .catch(error => {

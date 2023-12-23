@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+/**
+ * This page handless the avaliable challanges to each usr since each user only gets one chance at a challange
+ * JWT token is required together with the user ID parameter 
+ * 
+ */
 function ChallengePage() {
     const [data, setData] = useState([]);
     const [error, setError] = useState();

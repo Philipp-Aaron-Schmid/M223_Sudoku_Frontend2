@@ -2,7 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SudokuBoardDisplay from './SudokuBoardDisplay';
 import SudokuBoardAdd from './SudokuBoardAdd';
-
+/**
+ * The Probably most complex page of the entire front end here we display the challanges with fetch challenges
+ * which have to rely on the SudokuBoardDisplay component to visualize the challanges.
+ * each challange item can be opened for display or deleted outright from the DB
+ * 
+ * On the other side this page also provides the means to add sudoku chalanges via a form and the Sudokuboard add commponent
+ * which ensures that all challange strings to the backend are digit srtings of exactly 81 characters
+ * 
+ * 
+ */
 function ChallengeManagementPage() {
     const [challenges, setChallenges] = useState([]);
     const [newChallenge, setNewChallenge] = useState({

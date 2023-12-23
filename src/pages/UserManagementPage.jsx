@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+/**
+ * 
+ * @returns 
+ *  This protected page allows the Admin to manage users and is
+ *  only acessible to users with the role admin, the infromatio is in the backend also secured trough validation of the bearer token
+ */
 const UserManagementPage = () => {
     const [users, setUsers] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
@@ -17,7 +22,7 @@ const UserManagementPage = () => {
         }
     };
 
-    useEffect(() => {
+    useEffect(() => { //called to load page makes a request to return all users 
         if (token) {
             axios.get('http://localhost:8080/manage/users/all', config)
                 .then(response => {
@@ -31,7 +36,7 @@ const UserManagementPage = () => {
         }
     }, [token]);
 
-    const handleDelete = (userId) => {
+    const handleDelete = (userId) => { //function called on button click to send axios request to the backend
         axios.delete(`http://localhost:8080/manage/users/${userId}`, config)
             .then(() => {
                 setUsers(users.filter(user => user.id !== userId));
@@ -41,8 +46,8 @@ const UserManagementPage = () => {
             });
     };
 
-    const handleResetPassword = (userId) => {
-        axios.patch(`http://localhost:8080/manage/users/${userId}`, { password: 'Reset123' }, config)
+    const handleResetPassword = (userId) => { //activated upon resetPassword 
+        axios.patch(`http://localhost:8080/manage/users/${userId}`, { password: 'Reset123' }, config) //hardcoded bad solution looking to get a specially secured backend call
             .then(() => {
                 alert(`Password for user ${userId} reset successfully`);
             })

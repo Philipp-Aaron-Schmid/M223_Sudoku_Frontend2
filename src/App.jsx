@@ -14,6 +14,23 @@ import SidebarComponent from './Components/SidebarComponent'
 import AuthProvider from './Components/AuthContext'
 import ProtectedRoute from './Components/ProtectedRoute'
 
+/**
+ * 
+ * @returns 
+ * Known Bugs in application: 
+ *  - signin Messages from the backend are not processed/ gotten correctly so that propper error handling is not possible
+ *  - While playing a board of sudoku refreshing the browser before submission will result in a faulty submission breaking the score screen
+ * 
+ * ToDos
+ *  - add admin signup option/secure the admin signup
+ *  - add a more detailed user management
+ *  - add marketing material to the front page
+ *  - Organize the Styling of the pages centrally
+ *  - Write Test cases fot the code
+ *  - Reorganize code base for better overview
+ *  - Edit challenges
+ * 
+ */
 function App() {
 
   return (

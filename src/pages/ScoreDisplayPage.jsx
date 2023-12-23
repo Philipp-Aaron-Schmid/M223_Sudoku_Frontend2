@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+/**
+ * 
+ * @returns 
+ * This Page sends requests to the backend to see top scores and the users own scores when the page is called via the use effect
+ * It has a simple interaction where if a row on the own score table is clicked 
+ * The Sudoku board in this class has its own logic to display the actually entered number and use the score set 
+ * which the scorrec class generates in the backen to color code the output
+ */
+
 function ScoreDisplayPage() {
     const [userScores, setUserScores] = useState([]);
     const [topScores, setTopScores] = useState([]);
@@ -31,7 +40,7 @@ function ScoreDisplayPage() {
             const response = await axios.get(`http://localhost:8080/score/${userId}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
-            // Sorting the scores by ID in descending order and getting the top 10
+            // Sorting the scores by ID in descending order and getting the top 10 in order to show only the most recent
             const sortedScores = response.data.sort((a, b) => b.id - a.id).slice(0, 10);
             setUserScores(sortedScores);
         } catch (error) {
@@ -76,7 +85,7 @@ function ScoreDisplayPage() {
     const SudokuBoardScores = ({ playSet, playsScoreSet }) => {
         const renderCell = (index) => {
             const value = playSet[index];
-            const color = playsScoreSet[index] === '1' ? 'black' : playsScoreSet[index] === '2' ? '#0056b3' : 'lightgrey';
+            const color = playsScoreSet[index] === '1' ? 'black' : playsScoreSet[index] === '2' ? '#0056b3' : 'red';
 
             return (
                 <div key={index} style={{ color }} className="sudoku-cell-scores">
