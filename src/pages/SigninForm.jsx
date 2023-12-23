@@ -2,7 +2,12 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Components/AuthContext';
-
+/**
+ * 
+ * @returns 
+ * To Do:
+ *  Solve the problems with not recieving the error or sucess messages form the backend propperly
+ */
 function SigninForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -12,11 +17,11 @@ function SigninForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('http://localhost:8080/api/auth/signin', { username, password })
+            await axios.post('http://localhost:8080/api/auth/signin', { username, password }) 
                 .then((response) => {
-                    // Serverantwort verarbeiten
-                    if (response.data.username) { // wenn login erfolgreich
-                        localStorage.setItem("user", JSON.stringify(response.data)); // JWT-Strin
+                    
+                    if (response.data.username) { 
+                        localStorage.setItem("user", JSON.stringify(response.data)); 
                         login(response.data);
                         navigate('/Challenges');
                     }

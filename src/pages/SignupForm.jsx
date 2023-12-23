@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+/**
+ * 
+ * @returns 
+ * To Do:
+ *  Solve the problems with not recieving the error or sucess messages form the backend propperly
+ */
 function SignupForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

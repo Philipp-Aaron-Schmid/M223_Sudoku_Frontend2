@@ -26,13 +26,8 @@ function App() {
               <Route path="/" element={<PublicPage />} />
               <Route path="/Signin" element={<SigninForm />} />
               <Route path="/Signup" element={<SignupForm />} />
-              <Route path="/challenges" element={
-                <ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}>
-                  <ChallengePage />
-                </ProtectedRoute>
-              } />
-              <Route path="/playChallenge/:challengeId" element={
-                <ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><PlayChallengePage /></ProtectedRoute>} />
+              <Route path="/challenges" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ChallengePage /></ProtectedRoute>} />
+              <Route path="/playChallenge/:challengeId" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><PlayChallengePage /></ProtectedRoute>} />
               <Route path="/Score" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ScorePage /></ProtectedRoute>} />
               <Route path="/ManageChallenge" element={<ProtectedRoute roles={['ROLE_ADMIN']}><ChallengeManagementPage /></ProtectedRoute>} />
               <Route path="/TopScores" element={<ProtectedRoute roles={['ROLE_USER', 'ROLE_ADMIN']}><ScoreDisplayPage /></ProtectedRoute>} />
